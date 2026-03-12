@@ -14,6 +14,7 @@ import uuid
 import numpy as np
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 from src.inference import (
@@ -47,6 +48,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Some hosting/proxy layers can mishandle CORS preflight. Provide an explicit
+# catch-all OPTIONS handler so browsers always receive a 200 for preflight.
+@app.options("/{full_path:path}")
+async def cors_preflight(full_path: str) -> Response:
+    return Response(status_code=200)
 
 # Load data once at startup
 MAJORS: List[Major] = []
