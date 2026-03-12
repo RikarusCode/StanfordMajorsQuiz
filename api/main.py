@@ -40,12 +40,16 @@ app = FastAPI(
 # CORS middleware for frontend access
 app.add_middleware(
     CORSMiddleware,
-    # Public API (no cookies/auth): allow cross-origin browser requests from anywhere.
-    # This avoids "Failed to fetch" due to CORS when using custom domains / previews.
-    # Use a permissive regex as well; some proxies/browsers behave better when
-    # the origin is explicitly matched and echoed back.
-    allow_origins=["*"],
-    allow_origin_regex=r".*",
+    # CORS: allow the deployed Vercel frontend + local dev.
+    # Note: explicit origins are the most reliable across hosting/proxy setups.
+    allow_origins=[
+        "https://stanford-majors-quiz.vercel.app",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
+    # Also allow Vercel preview deployments if you use them:
+    # - https://<anything>.vercel.app
+    allow_origin_regex=r"^https://.*\.vercel\.app$",
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
