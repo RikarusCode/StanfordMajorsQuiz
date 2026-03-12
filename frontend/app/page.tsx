@@ -51,7 +51,8 @@ export default function LandingPage() {
                 <p>
                   The quiz pulls from a large bank of questions and dynamically chooses
                   the most informative next question based on your previous answers.
-                  That means shorter quizzes and more precise results.
+                  That means shorter quizzes and more precise results. Quizzes end 
+                  early if the algorithm is confident!
                 </p>
               </div>
 

@@ -121,7 +121,7 @@ function ResultsContent() {
               Your Major Recommendations
             </h1>
             <p className="text-xl text-gray-300">
-              Based on your responses, here are your top matches
+              Based on your responses, here are your top matches!
             </p>
           </motion.div>
 
@@ -133,8 +133,8 @@ function ResultsContent() {
           >
             <GlassCard variant="strong" className="mb-8">
               <div className="mb-6">
-                <p className="text-sm text-gray-400 mb-2">
-                  Click each program name to explore more
+                <p className="text-sm text-gray-300 mb-2">
+                   Click each program name to explore more
                 </p>
               </div>
 
@@ -237,12 +237,16 @@ function ResultsContent() {
                 What the algorithm did (Bayes + Information Theory)
               </h2>
               <p className="text-gray-300 leading-relaxed">
+                Most quizzes, even famous ones like Myers Briggs, ask the same 
+                fixed questions with broad matches.
                 After each answer, we update a probability distribution over majors using{" "}
                 <span className="text-white font-medium">Bayes’ Rule</span>. Then we pick the next
                 question that maximizes expected{" "}
                 <span className="text-white font-medium">information gain</span>—the expected
                 reduction in{" "}
-                <span className="text-white font-medium">Shannon entropy</span> of the posterior.
+                <span className="text-white font-medium">Shannon entropy</span> of the posterior. 
+                This means we can get more precise results in fewer questions.
+                
               </p>
             </GlassCard>
           </motion.div>
