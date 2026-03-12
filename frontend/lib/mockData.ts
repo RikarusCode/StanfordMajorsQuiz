@@ -1,4 +1,11 @@
-import { Major, Question } from "./types";
+import type { Major } from "./api";
+
+// This file is kept as legacy mock data from early frontend development.
+// It is not used in the production app, but it must typecheck for builds.
+export type Question = {
+  id: string;
+  text: string;
+};
 
 export const mockQuestions: Question[] = [
   {
