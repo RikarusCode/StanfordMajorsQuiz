@@ -1,137 +1,143 @@
-# Stanford Major Quiz - Frontend
+# Stanford Major Quiz — Frontend
 
-Modern Next.js frontend for the adaptive Stanford major quiz with a polished dark gradient design and glassmorphism UI.
+Modern **Next.js (App Router)** frontend for the Stanford Major Quiz. It provides the landing page, adaptive quiz UI, and a rich results experience (charts + explanations) powered by the FastAPI backend.
 
-## Tech Stack
+For the full system overview (algorithm, repo-wide structure, one-shot start scripts), see the root [`README.md`](../README.md).
 
-- **Next.js 14** (App Router)
+## Tech stack
+
+- **Next.js 16** (App Router) + **React 18**
 - **TypeScript**
 - **Tailwind CSS**
 - **Framer Motion**
+- **Recharts** (results visualizations)
 
-## Design Features
-
-- Dark gradient background (deep blue/purple tones)
-- Glassmorphism cards with backdrop blur
-- Smooth animations and transitions
-- Responsive design (mobile-first)
-- Modern, minimal aesthetic
-
-## Getting Started
+## Quick start (local development)
 
 ### Prerequisites
 
-1. **FastAPI Backend**: Make sure the FastAPI backend is running on `http://localhost:8000`
-   ```bash
-   # From project root
-   cd api
-   pip install -r requirements.txt
-   uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
-   ```
+- **Node.js 18+**
+- A running **FastAPI backend** (see `api/README.md`)
 
-2. **Frontend Setup**:
-   ```bash
-   # Navigate to frontend directory
-   cd frontend
+### 1) Start the backend
 
-   # Install dependencies
-   npm install
+From the repo root:
 
-   # (Optional) Configure API URL
-   # Copy .env.local.example to .env.local and update if needed
-   # Default: http://localhost:8000
-
-   # Run development server
-   npm run dev
-   ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Project Structure
-
-```
-frontend/
-├── app/
-│   ├── globals.css          # Global styles with glassmorphism utilities
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Landing page
-│   ├── quiz/
-│   │   └── page.tsx         # Quiz page with question flow
-│   └── results/
-│       └── page.tsx         # Results page with major recommendations
-├── components/
-│   ├── AnimatedBackground.tsx  # Animated gradient background
-│   ├── AnswerChoice.tsx        # Answer choice tiles
-│   ├── Button.tsx              # Reusable button component
-│   ├── CenteredContainer.tsx   # Responsive centered container
-│   ├── ErrorMessage.tsx        # Error display component
-│   ├── GlassCard.tsx           # Glassmorphism card wrapper
-│   ├── LoadingSpinner.tsx     # Loading indicator
-│   ├── ProgressBar.tsx         # Animated progress bar
-│   ├── QuestionCard.tsx        # Question display card
-│   └── TopResultsCard.tsx      # Top majors sidebar card
-├── lib/
-│   ├── api.ts             # API client for FastAPI backend
-│   └── mockData.ts        # (Legacy) mock data used early in development
-└── public/                  # Static assets (if needed)
+```bash
+cd api
+pip install -r requirements.txt
+uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-## Pages
+Confirm it’s up:
 
-### Landing Page (`/`)
-- Hero section with gradient title
-- "How It Works" explanation
-- Start quiz button
+- `http://127.0.0.1:8000/health`
+- `http://127.0.0.1:8000/docs`
 
-### Quiz Page (`/quiz`)
-- Adaptive question display (from API)
-- Likert scale (1-5) answer options
-- Progress bar with real-time updates
-- Sidebar with top 5 majors (live from API)
-- Smooth question transitions with loading states
-- Error handling with retry functionality
+### 2) Start the frontend
 
-### Results Page (`/results`)
-- Ranked major recommendations (from API)
-- Clickable links to program pages
-- Statistics (questions asked, confidence, entropy)
-- Loading states and error handling
-- Disclaimer
-- Retake quiz option
+In a second terminal:
 
-## API Integration
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-The frontend is fully integrated with the FastAPI backend:
-
-- **POST /start** - Initializes quiz session on page load
-- **POST /answer** - Submits answers and gets next question
-- **GET /results/{session_id}** - Fetches final results
-
-All API calls include:
-- Loading states with spinners
-- Error handling with user-friendly messages
-- Retry functionality
-- Smooth animations during state transitions
+Open `http://localhost:3000`.
 
 ## Configuration
 
-Set the API URL via environment variable:
-```bash
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
+### `NEXT_PUBLIC_API_URL`
 
-Default is `http://localhost:8000` if not set.
+The frontend reads the API base URL from `NEXT_PUBLIC_API_URL`.
 
-## Next Steps
+- **Local**: set it to your local FastAPI server
+- **Production**: set it to your deployed FastAPI URL (must be `https://...`)
 
-1. **Enhanced Visualizations**: Add charts and graphs for entropy reduction, information gain, etc.
-2. **User Persistence**: Add ability to save/resume quiz sessions
-3. **Analytics**: Track quiz completion rates and popular majors
-4. **Optimization**: Implement request caching and optimistic updates
-
-## Building for Production
+Create `frontend/.env.local`:
 
 ```bash
-npm run build
-npm start
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
 ```
+
+Notes:
+
+- If you **do not** set `NEXT_PUBLIC_API_URL`, the app falls back to the production URL hardcoded in `frontend/lib/api.ts`.
+- If your site is served over **HTTPS** (e.g. Vercel), your API URL must also be **HTTPS** or the browser will block requests (mixed content).
+
+## Key pages
+
+- **`/`**: landing page + methodology overview
+- **`/quiz`**: one-question-at-a-time quiz experience
+- **`/results?session_id=...`**: final results + charts + “CS109-level” explanation
+
+## UI architecture (where things live)
+
+```text
+frontend/
+  app/
+    page.tsx              # landing
+    quiz/page.tsx         # quiz flow + API calls
+    results/page.tsx      # results + charts + narrative
+    globals.css           # global styles + utility classes
+  components/
+    PageShell.tsx         # shared layout + header
+    AnimatedBackground.tsx# used on landing only (perf)
+    AnswerChoice.tsx      # quiz answer tile
+    ProgressBar.tsx       # progress indicator
+    TopResultsCard.tsx    # live top-5 majors sidebar
+    charts/               # Recharts components used on results page
+  lib/
+    api.ts                # typed FastAPI client (fetch wrapper + models)
+  public/
+    class-logo-gen.png    # logo used in the UI
+```
+
+## API integration (contract summary)
+
+The UI talks to the FastAPI backend via:
+
+- `POST /start`
+- `POST /answer`
+- `GET /results/{session_id}`
+- `GET /health`
+
+The typed client lives in `frontend/lib/api.ts`. Detailed request/response docs are in `api/README.md`.
+
+## Scripts
+
+From `frontend/`:
+
+- `npm run dev`: run dev server
+- `npm run build`: production build
+- `npm start`: run production server (after build)
+- `npm run lint`: Next.js lint
+
+## Deployment (Vercel)
+
+High-level checklist:
+
+- **Root directory** in Vercel: `frontend`
+- **Environment variable** in Vercel:
+  - `NEXT_PUBLIC_API_URL = https://<your-backend-domain>`
+- Ensure the backend allows your Vercel origin via CORS (see `api/main.py`)
+
+This repo includes `frontend/vercel.json` for build/install defaults, but Vercel project settings still matter (especially Root Directory + env vars).
+
+## Troubleshooting
+
+### “Network error: Failed to fetch”
+
+This is almost always one of:
+
+- `NEXT_PUBLIC_API_URL` is missing/wrong (e.g. points to `localhost` in production)
+- API URL is `http://...` while the frontend is `https://...` (mixed content)
+- Backend is down / wrong domain
+- CORS is blocking the browser request
+
+Fastest way to debug:
+
+- Confirm API health in a browser: `https://<backend>/health`
+- In the frontend, open DevTools → **Network** and inspect the failing request URL + console errors
+
