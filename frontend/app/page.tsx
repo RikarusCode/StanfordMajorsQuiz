@@ -2,13 +2,15 @@
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Button, GlassCard, PageShell } from "@/components";
+import { AnimatedBackground, Button, GlassCard, PageShell } from "@/components";
 
 export default function LandingPage() {
   const router = useRouter();
 
   return (
-    <PageShell centered maxWidth="4xl">
+    <>
+      <AnimatedBackground />
+      <PageShell centered maxWidth="4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,6 +105,7 @@ export default function LandingPage() {
               </Button>
             </div>
           </motion.div>
-    </PageShell>
+      </PageShell>
+    </>
   );
 }

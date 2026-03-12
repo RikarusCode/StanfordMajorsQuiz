@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import CenteredContainer from "@/components/CenteredContainer";
 
 type MaxWidth = "sm" | "md" | "lg" | "xl" | "2xl" | "4xl" | "6xl";
@@ -16,18 +15,15 @@ export default function PageShell({
   className?: string;
 }) {
   return (
-    <>
-      <AnimatedBackground />
-      <main
-        className={[
-          "min-h-screen relative z-10",
-          centered ? "flex items-center justify-center p-4" : "p-4 md:p-8",
-          className,
-        ].join(" ")}
-      >
-        <CenteredContainer maxWidth={maxWidth}>{children}</CenteredContainer>
-      </main>
-    </>
+    <main
+      className={[
+        "min-h-screen relative z-10",
+        centered ? "flex items-center justify-center p-4" : "p-4 md:p-8",
+        className,
+      ].join(" ")}
+    >
+      <CenteredContainer maxWidth={maxWidth}>{children}</CenteredContainer>
+    </main>
   );
 }
 

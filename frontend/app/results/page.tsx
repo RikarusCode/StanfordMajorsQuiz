@@ -5,21 +5,26 @@ import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Button,
-  CenteredContainer,
   ErrorMessage,
   GlassCard,
   LoadingSpinner,
+  EntropyChart,
+  InfoGainChart,
   PageShell,
+  TopMajorsEvolutionChart,
 } from "@/components";
 import { api, type Major } from "@/lib/api";
 
 type ResultsState = {
   majors: Major[];
+  majorOrder: string[];
   entropy: number;
   topProbability: number;
   questionsAsked: number;
   entropyHistory: number[];
   infoGainHistory: number[];
+  posteriorHistory: number[][];
+  questionNumberHistory: string[];
 };
 
 function ResultsContent() {
@@ -48,11 +53,14 @@ function ResultsContent() {
         if (cancelled) return;
         setResults({
           majors: response.majors,
+          majorOrder: response.major_order,
           entropy: response.entropy,
           topProbability: response.top_probability,
           questionsAsked: response.questions_asked,
           entropyHistory: response.entropy_history,
           infoGainHistory: response.info_gain_history,
+          posteriorHistory: response.posterior_history,
+          questionNumberHistory: response.question_number_history,
         });
       } catch (err) {
         if (cancelled) return;
@@ -131,7 +139,7 @@ function ResultsContent() {
               </div>
 
               <div className="space-y-4">
-                {results.majors.map((major, index) => (
+                {results.majors.slice(0, 10).map((major, index) => (
                   <motion.div
                     key={major.id}
                     initial={{ opacity: 0, x: -20 }}
@@ -218,6 +226,139 @@ function ResultsContent() {
             </GlassCard>
           </motion.div>
 
+          {/* Educational / algorithm section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+          >
+            <GlassCard variant="strong" className="mb-8">
+              <h2 className="text-2xl font-semibold mb-2">
+                What the algorithm did (Bayes + Information Theory)
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                After each answer, we update a probability distribution over majors using{" "}
+                <span className="text-white font-medium">Bayes’ Rule</span>. Then we pick the next
+                question that maximizes expected{" "}
+                <span className="text-white font-medium">information gain</span>—the expected
+                reduction in{" "}
+                <span className="text-white font-medium">Shannon entropy</span> of the posterior.
+              </p>
+            </GlassCard>
+          </motion.div>
+
+          {/* Entropy reduction over time */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <GlassCard variant="strong" className="mb-8">
+              <h3 className="text-xl font-semibold mb-2">
+                Uncertainty Reduction (Entropy) Over Time
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                Entropy measures how uncertain we are about the best-fit major. Lower is more
+                confident.
+              </p>
+              <EntropyChart entropyHistory={results.entropyHistory} />
+            </GlassCard>
+          </motion.div>
+
+          {/* Information gain per question */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+          >
+            <GlassCard variant="strong" className="mb-8">
+              <h3 className="text-xl font-semibold mb-2">
+                Information Gain Per Question (Adaptive Selection)
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                Each bar is the expected entropy reduction for the chosen next question at that
+                step.
+              </p>
+              <InfoGainChart infoGainHistory={results.infoGainHistory} />
+            </GlassCard>
+          </motion.div>
+
+          {/* Probability evolution for top majors */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <GlassCard variant="strong" className="mb-8">
+              <h3 className="text-xl font-semibold mb-2">
+                Probability Evolution for Your Top Majors
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                Watch how Bayes updates shift probability mass as evidence accumulates.
+              </p>
+              {(() => {
+                const topK = 5;
+                const topMajors = results.majors.slice(0, topK);
+                const idToIndex = new Map(
+                  results.majorOrder.map((id, i) => [id, i])
+                );
+                const series = topMajors.map((m, i) => ({
+                  name: m.name,
+                  key: `m${i}`,
+                  color: ["#3b82f6", "#22c55e", "#a855f7", "#f59e0b", "#ef4444"][i]!,
+                  idx: idToIndex.get(m.id) ?? -1,
+                }));
+
+                const data = results.posteriorHistory.map((row, step) => {
+                  const obj: Record<string, number | string> = { step };
+                  series.forEach((s, i) => {
+                    const p = s.idx >= 0 ? row[s.idx] ?? 0 : 0;
+                    obj[`m${i}`] = p * 100;
+                  });
+                  return obj;
+                });
+
+                return (
+                  <TopMajorsEvolutionChart
+                    data={data}
+                    series={series.map(({ name, key, color }) => ({ name, key, color }))}
+                  />
+                );
+              })()}
+            </GlassCard>
+          </motion.div>
+
+          {/* Adaptive vs linear comparison (hypothetical linear) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
+          >
+            <GlassCard variant="strong" className="mb-8">
+              <h3 className="text-xl font-semibold mb-2">
+                Adaptive vs Linear Test: A Direct Comparison
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                A fixed-order test can waste questions on things that don’t matter for you. Below we
+                overlay your adaptive entropy curve with a hypothetical linear test that reduces
+                uncertainty much more slowly.
+              </p>
+              {(() => {
+                const adaptive = results.entropyHistory;
+                const initial = adaptive[0] ?? 0;
+                const linearSteps = 20;
+                const target = initial * 0.8;
+                const linear = [initial];
+                for (let q = 1; q <= linearSteps; q++) {
+                  const progress = q / linearSteps;
+                  const ent = initial - (initial - target) * Math.pow(progress, 0.5);
+                  linear.push(ent);
+                }
+                return <EntropyChart entropyHistory={adaptive} linearEntropyHistory={linear} />;
+              })()}
+            </GlassCard>
+          </motion.div>
+
           {/* Disclaimer */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -226,7 +367,8 @@ function ResultsContent() {
           >
             <GlassCard className="mb-8">
               <p className="text-sm text-gray-400 text-center leading-relaxed">
-                This quiz is for fun and educational purposes only. It is not
+                This quiz is for fun and educational purposes only. It is meant 
+                to inspire curiosity and further exploration, not to be taken as 
                 official academic advice. Please consult with academic advisors
                 for guidance on major selection.
               </p>

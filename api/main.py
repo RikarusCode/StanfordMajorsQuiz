@@ -39,7 +39,9 @@ app = FastAPI(
 # CORS middleware for frontend access
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    # Dev-friendly: allow any localhost port (Next may move to 3001/3002 if 3000 is in use)
+    allow_origins=[],
+    allow_origin_regex=r"^http://(localhost|127\.0\.0\.1):\d+$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -122,11 +124,23 @@ class ResultsResponse(BaseModel):
 
     session_id: str
     majors: List[Dict[str, float | str]]
+    major_order: List[str] = Field(
+        ...,
+        description="Major IDs corresponding to indices in posterior_history rows.",
+    )
     entropy: float
     top_probability: float
     questions_asked: int
     entropy_history: List[float]
     info_gain_history: List[float]
+    posterior_history: List[List[float]] = Field(
+        ...,
+        description="Posterior probabilities over majors after each step, aligned to major_order.",
+    )
+    question_number_history: List[str] = Field(
+        ...,
+        description="Random display codes for each asked question (same order as steps).",
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -145,6 +159,9 @@ class QuizSession:
         self.entropy_history: List[float] = [shannon_entropy(self.posterior)]
         self.info_gain_history: List[float] = []
         self.question_ids_history: List[str] = []
+        # Keep a full posterior history for visualizations on the frontend.
+        # Includes the initial prior as the first element.
+        self.posterior_history: List[np.ndarray] = [self.posterior.copy()]
 
     def get_available_questions(self) -> Dict[str, List[np.ndarray]]:
         """Get likelihoods for questions not yet asked."""
@@ -257,6 +274,7 @@ async def submit_answer(request: AnswerRequest) -> AnswerResponse:
     # Update entropy history
     current_entropy = shannon_entropy(session.posterior)
     session.entropy_history.append(current_entropy)
+    session.posterior_history.append(session.posterior.copy())
 
     # Check if quiz should continue
     top_prob = float(np.max(session.posterior))
@@ -343,14 +361,22 @@ async def get_results(session_id: str) -> ResultsResponse:
             }
         )
 
+    major_order = [m.id for m in MAJORS]
+    posterior_history = [
+        [float(x) for x in row.tolist()] for row in session.posterior_history
+    ]
+
     return ResultsResponse(
         session_id=session_id,
         majors=majors,
+        major_order=major_order,
         entropy=float(shannon_entropy(session.posterior)),
         top_probability=float(np.max(session.posterior)),
         questions_asked=len(session.responses),
         entropy_history=session.entropy_history,
         info_gain_history=session.info_gain_history,
+        posterior_history=posterior_history,
+        question_number_history=session.question_ids_history,
     )
 
 

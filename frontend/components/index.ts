@@ -10,3 +10,8 @@ export { default as PageShell } from "./PageShell";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as QuestionCard } from "./QuestionCard";
 export { default as TopResultsCard } from "./TopResultsCard";
+
+// Charts
+export { default as EntropyChart } from "./charts/EntropyChart";
+export { default as InfoGainChart } from "./charts/InfoGainChart";
+export { default as TopMajorsEvolutionChart } from "./charts/TopMajorsEvolutionChart";
