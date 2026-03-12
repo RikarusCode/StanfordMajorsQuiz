@@ -7,6 +7,7 @@ for quiz initialization, answering questions, and retrieving results.
 
 from __future__ import annotations
 
+import os
 import secrets
 from typing import Dict, List, Optional
 import uuid
@@ -38,18 +39,21 @@ app = FastAPI(
 )
 
 # CORS middleware for frontend access
+ALLOWED_ORIGINS = [
+    "https://stanford-majors-quiz.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+ALLOWED_ORIGIN_REGEX = r"^https://.*\.vercel\.app$"
+
 app.add_middleware(
     CORSMiddleware,
     # CORS: allow the deployed Vercel frontend + local dev.
     # Note: explicit origins are the most reliable across hosting/proxy setups.
-    allow_origins=[
-        "https://stanford-majors-quiz.vercel.app",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     # Also allow Vercel preview deployments if you use them:
     # - https://<anything>.vercel.app
-    allow_origin_regex=r"^https://.*\.vercel\.app$",
+    allow_origin_regex=ALLOWED_ORIGIN_REGEX,
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -397,7 +401,26 @@ async def get_results(session_id: str) -> ResultsResponse:
 @app.get("/health")
 async def health_check():
     """Health check endpoint."""
-    return {"status": "ok", "majors_loaded": len(MAJORS), "questions_loaded": len(QUESTIONS)}
+    # Include minimal deployment/debug info so it's easy to verify Railway has
+    # redeployed the latest code when troubleshooting CORS.
+    build = (
+        os.getenv("RAILWAY_GIT_COMMIT_SHA")
+        or os.getenv("GITHUB_SHA")
+        or os.getenv("RENDER_GIT_COMMIT")
+        or os.getenv("COMMIT_SHA")
+        or "unknown"
+    )
+    return {
+        "status": "ok",
+        "majors_loaded": len(MAJORS),
+        "questions_loaded": len(QUESTIONS),
+        "build": build,
+        "cors": {
+            "allow_credentials": False,
+            "allow_origins": ALLOWED_ORIGINS,
+            "allow_origin_regex": ALLOWED_ORIGIN_REGEX,
+        },
+    }
 
 
 if __name__ == "__main__":
