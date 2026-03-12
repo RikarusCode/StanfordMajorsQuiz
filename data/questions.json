@@ -1,0 +1,899 @@
+[
+  {
+    "id": "q1",
+    "text": "I enjoy working with formal mathematical arguments or proofs.",
+    "feature_weights": {
+      "mathematical_rigor": 1.0,
+      "modeling_abstraction": 0.7,
+      "argumentative_reasoning": 0.4
+    }
+  },
+  {
+    "id": "q2",
+    "text": "I like writing and debugging computer programs.",
+    "feature_weights": {
+      "computational_intensity": 1.0,
+      "applied_problem_solving": 0.5,
+      "systems_thinking": 0.3
+    }
+  },
+  {
+    "id": "q3",
+    "text": "Collecting data and using statistics to make sense of the world appeals to me.",
+    "feature_weights": {
+      "statistical_reasoning": 1.0,
+      "mathematical_rigor": 0.6,
+      "human_behavior_focus": 0.4
+    }
+  },
+  {
+    "id": "q4",
+    "text": "I’m drawn to building and optimizing systems that have to actually work in the real world.",
+    "feature_weights": {
+      "systems_thinking": 0.7,
+      "engineering_orientation": 1.0,
+      "applied_problem_solving": 0.8
+    }
+  },
+  {
+    "id": "q5",
+    "text": "I enjoy hands-on experiments in a lab with equipment, instruments, or chemicals.",
+    "feature_weights": {
+      "experimental_lab_work": 1.0,
+      "physical_science_focus": 0.6,
+      "biological_focus": 0.4
+    }
+  },
+  {
+    "id": "q6",
+    "text": "I like going into real-world settings (communities, organizations, ecosystems) to observe or collect data.",
+    "feature_weights": {
+      "empirical_fieldwork": 1.0,
+      "human_behavior_focus": 0.5,
+      "biological_focus": 0.4,
+      "social_institutions_focus": 0.4
+    }
+  },
+  {
+    "id": "q7",
+    "text": "I’m energized by reading dense or challenging texts and unpacking what they mean.",
+    "feature_weights": {
+      "reading_intensity": 1.0,
+      "historical_contextual_analysis": 0.6,
+      "ambiguity_tolerance": 0.5
+    }
+  },
+  {
+    "id": "q8",
+    "text": "I enjoy writing long, structured pieces that argue for a position or interpretation.",
+    "feature_weights": {
+      "writing_intensity": 1.0,
+      "argumentative_reasoning": 0.9,
+      "ethical_normative_reasoning": 0.4
+    }
+  },
+  {
+    "id": "q9",
+    "text": "I’m comfortable when there isn’t a single right answer and I have to sit with ambiguity or interpretive nuance.",
+    "feature_weights": {
+      "ambiguity_tolerance": 1.0,
+      "historical_contextual_analysis": 0.4,
+      "human_behavior_focus": 0.4
+    }
+  },
+  {
+    "id": "q10",
+    "text": "I like designing or creating things that others can experience, use, or interact with.",
+    "feature_weights": {
+      "creative_design": 1.0,
+      "applied_problem_solving": 0.6,
+      "human_behavior_focus": 0.4
+    }
+  },
+
+  {
+    "id": "q11",
+    "text": "Understanding how policies, laws, or institutions shape people’s lives is important to me.",
+    "feature_weights": {
+      "social_institutions_focus": 1.0,
+      "policy_relevance": 0.9,
+      "human_behavior_focus": 0.4
+    }
+  },
+  {
+    "id": "q12",
+    "text": "I think a lot about what society ought to do, not just what it currently does.",
+    "feature_weights": {
+      "ethical_normative_reasoning": 1.0,
+      "policy_relevance": 0.6,
+      "argumentative_reasoning": 0.5
+    }
+  },
+  {
+    "id": "q13",
+    "text": "I’m fascinated by how the human mind works—perception, language, decision-making, or learning.",
+    "feature_weights": {
+      "human_behavior_focus": 1.0,
+      "mathematical_rigor": 0.3,
+      "statistical_reasoning": 0.4
+    }
+  },
+  {
+    "id": "q14",
+    "text": "I’m interested in biological systems such as cells, organisms, or ecosystems.",
+    "feature_weights": {
+      "biological_focus": 1.0,
+      "experimental_lab_work": 0.6,
+      "empirical_fieldwork": 0.5
+    }
+  },
+  {
+    "id": "q15",
+    "text": "I like thinking about physical phenomena like forces, energy, or the structure of matter and the Earth.",
+    "feature_weights": {
+      "physical_science_focus": 1.0,
+      "mathematical_rigor": 0.5,
+      "experimental_lab_work": 0.5
+    }
+  },
+  {
+    "id": "q16",
+    "text": "I prefer to work with concrete problems and real-world case studies rather than pure theory.",
+    "feature_weights": {
+      "applied_problem_solving": 1.0,
+      "engineering_orientation": 0.7,
+      "modeling_abstraction": -0.3
+    }
+  },
+  {
+    "id": "q17",
+    "text": "I enjoy studying formal systems like logic, programming languages, or symbolic representations.",
+    "feature_weights": {
+      "modeling_abstraction": 1.0,
+      "computational_intensity": 0.6,
+      "mathematical_rigor": 0.5,
+      "argumentative_reasoning": 0.3
+    }
+  },
+  {
+    "id": "q18",
+    "text": "I get excited about building software, tools, or systems that other people can rely on.",
+    "feature_weights": {
+      "computational_intensity": 0.9,
+      "engineering_orientation": 0.8,
+      "applied_problem_solving": 0.9,
+      "systems_thinking": 0.6
+    }
+  },
+  {
+    "id": "q19",
+    "text": "I would enjoy designing the layout, structure, or visual form of physical or digital spaces.",
+    "feature_weights": {
+      "creative_design": 1.0,
+      "systems_thinking": 0.5,
+      "human_behavior_focus": 0.4
+    }
+  },
+  {
+    "id": "q20",
+    "text": "I’m drawn to interdisciplinary work that connects technical, social, and humanistic perspectives.",
+    "feature_weights": {
+      "interdisciplinarity": 1.0,
+      "social_institutions_focus": 0.5,
+      "computational_intensity": 0.3,
+      "historical_contextual_analysis": 0.3
+    }
+  },
+
+  {
+    "id": "q21",
+    "text": "I enjoy reasoning carefully from data and uncertainty to reach justified conclusions.",
+    "feature_weights": {
+      "statistical_reasoning": 1.0,
+      "mathematical_rigor": 0.5,
+      "ambiguity_tolerance": 0.4
+    }
+  },
+  {
+    "id": "q22",
+    "text": "I would like to work on technologies that interact closely with people (e.g., user interfaces, social platforms, assistive tech).",
+    "feature_weights": {
+      "human_behavior_focus": 0.8,
+      "computational_intensity": 0.6,
+      "creative_design": 0.6,
+      "systems_thinking": 0.4
+    }
+  },
+  {
+    "id": "q23",
+    "text": "I'm curious about how large-scale systems like cities, energy grids, or transportation networks are designed.",
+    "feature_weights": {
+      "engineering_orientation": 0.8,
+      "policy_relevance": 0.7,
+      "applied_problem_solving": 0.7,
+      "systems_thinking": 0.5
+    }
+  },
+  {
+    "id": "q24",
+    "text": "I enjoy interviewing people, observing communities, or doing qualitative field research.",
+    "feature_weights": {
+      "empirical_fieldwork": 1.0,
+      "human_behavior_focus": 0.8,
+      "social_institutions_focus": 0.5
+    }
+  },
+  {
+    "id": "q25",
+    "text": "I’m interested in how scientific or technological advances affect society, ethics, and policy.",
+    "feature_weights": {
+      "policy_relevance": 0.9,
+      "social_institutions_focus": 0.8,
+      "ethical_normative_reasoning": 0.6,
+      "physical_science_focus": 0.3
+    }
+  },
+  {
+    "id": "q26",
+    "text": "I find it rewarding to translate complex technical or academic ideas into clear explanations for others.",
+    "feature_weights": {
+      "writing_intensity": 0.8,
+      "argumentative_reasoning": 0.6,
+      "human_behavior_focus": 0.4,
+      "interdisciplinarity": 0.4
+    }
+  },
+  {
+    "id": "q27",
+    "text": "I would enjoy designing experiments or simulations to test hypotheses about how systems behave.",
+    "feature_weights": {
+      "experimental_lab_work": 0.7,
+      "statistical_reasoning": 0.7,
+      "systems_thinking": 0.6,
+      "computational_intensity": 0.5
+    }
+  },
+  {
+    "id": "q28",
+    "text": "I am attracted to majors that center on creativity, expression, or storytelling.",
+    "feature_weights": {
+      "creative_design": 0.9,
+      "ambiguity_tolerance": 0.7,
+      "reading_intensity": 0.5,
+      "mathematical_rigor": -0.3,
+      "computational_intensity": -0.3
+    }
+  },
+  {
+    "id": "q29",
+    "text": "I enjoy thinking about how markets, incentives, or strategic interactions shape behavior.",
+    "feature_weights": {
+      "social_institutions_focus": 0.8,
+      "human_behavior_focus": 0.7,
+      "mathematical_rigor": 0.5,
+      "statistical_reasoning": 0.5
+    }
+  },
+  {
+    "id": "q30",
+    "text": "I care a lot about environmental or sustainability challenges and would like to work on them directly.",
+    "feature_weights": {
+      "biological_focus": 0.6,
+      "physical_science_focus": 0.6,
+      "empirical_fieldwork": 0.7,
+      "policy_relevance": 0.8,
+      "applied_problem_solving": 0.7
+    }
+  },
+
+  {
+    "id": "q31",
+    "text": "I like problems where there is a crisp notion of correctness and I can check whether my answer is right.",
+    "feature_weights": {
+      "mathematical_rigor": 0.7,
+      "computational_intensity": 0.6,
+      "ambiguity_tolerance": -0.5
+    }
+  },
+  {
+    "id": "q32",
+    "text": "I like problems where multiple interpretations are possible and the goal is to make a persuasive case.",
+    "feature_weights": {
+      "ambiguity_tolerance": 1.0,
+      "argumentative_reasoning": 0.7,
+      "writing_intensity": 0.6
+    }
+  },
+  {
+    "id": "q33",
+    "text": "I’m excited by the idea of working at the interface of biology and technology (e.g., bioengineering, biomedical computation).",
+    "feature_weights": {
+      "biological_focus": 0.9,
+      "computational_intensity": 0.6,
+      "engineering_orientation": 0.5,
+      "interdisciplinarity": 0.6
+    }
+  },
+  {
+    "id": "q34",
+    "text": "I am interested in modeling human behavior mathematically or computationally (for example, in economics, cognitive science, or AI).",
+    "feature_weights": {
+      "human_behavior_focus": 0.8,
+      "mathematical_rigor": 0.6,
+      "computational_intensity": 0.6,
+      "modeling_abstraction": 0.7
+    }
+  },
+  {
+    "id": "q35",
+    "text": "I like thinking about long-run historical change, context, and how the past shapes the present.",
+    "feature_weights": {
+      "historical_contextual_analysis": 1.0,
+      "reading_intensity": 0.7,
+      "writing_intensity": 0.6
+    }
+  },
+  {
+    "id": "q36",
+    "text": "I enjoy coordinating teams, projects, or organizations to get complex things done.",
+    "feature_weights": {
+      "systems_thinking": 0.7,
+      "applied_problem_solving": 0.8,
+      "human_behavior_focus": 0.5,
+      "social_institutions_focus": 0.4
+    }
+  },
+  {
+    "id": "q37",
+    "text": "I could see myself designing or analyzing algorithms that need to run efficiently at scale.",
+    "feature_weights": {
+      "computational_intensity": 1.0,
+      "mathematical_rigor": 0.6,
+      "systems_thinking": 0.6
+    }
+  },
+  {
+    "id": "q38",
+    "text": "I’m especially interested in majors that blend social impact with rigorous quantitative methods.",
+    "feature_weights": {
+      "policy_relevance": 0.9,
+      "social_institutions_focus": 0.8,
+      "statistical_reasoning": 0.7,
+      "mathematical_rigor": 0.6,
+      "interdisciplinarity": 0.6
+    }
+  },
+  {
+    "id": "q39",
+    "text": "I am drawn to close analysis of language, texts, or media rather than numbers or experiments.",
+    "feature_weights": {
+      "reading_intensity": 0.9,
+      "writing_intensity": 0.8,
+      "ambiguity_tolerance": 0.7,
+      "mathematical_rigor": -0.4,
+      "computational_intensity": -0.4
+    }
+  },
+  {
+    "id": "q40",
+    "text": "I would like a major where collaboration with people from very different backgrounds and methods is the norm.",
+    "feature_weights": {
+      "interdisciplinarity": 1.0,
+      "human_behavior_focus": 0.5,
+      "applied_problem_solving": 0.5
+    }
+  },
+  {
+    "id": "q41",
+    "text": "I would enjoy proving theorems or working through abstract math problems even without direct applications.",
+    "feature_weights": {
+      "mathematical_rigor": 1.0,
+      "modeling_abstraction": 0.9
+    }
+  },
+  {
+    "id": "q42",
+    "text": "I like the idea of working with hardware, circuits, sensors, or other physical devices.",
+    "feature_weights": {
+      "experimental_lab_work": 0.7,
+      "physical_science_focus": 0.7,
+      "engineering_orientation": 0.6,
+      "applied_problem_solving": 0.5
+    }
+  },
+  {
+    "id": "q43",
+    "text": "I’m especially interested in health, medicine, or the human body.",
+    "feature_weights": {
+      "biological_focus": 0.9,
+      "human_behavior_focus": 0.4,
+      "empirical_fieldwork": 0.4
+    }
+  },
+  {
+    "id": "q44",
+    "text": "I would enjoy designing surveys or experiments to study people’s beliefs, attitudes, or behaviors.",
+    "feature_weights": {
+      "empirical_fieldwork": 0.8,
+      "statistical_reasoning": 0.6,
+      "human_behavior_focus": 0.8,
+      "social_institutions_focus": 0.4
+    }
+  },
+  {
+    "id": "q45",
+    "text": "I’m excited by the idea of mastering multiple languages and comparing cultures through their literature.",
+    "feature_weights": {
+      "reading_intensity": 0.9,
+      "writing_intensity": 0.7,
+      "historical_contextual_analysis": 0.6,
+      "ambiguity_tolerance": 0.5
+    }
+  },
+  {
+    "id": "q46",
+    "text": "I’m drawn to legal or constitutional questions and how courts or legal systems reason.",
+    "feature_weights": {
+      "social_institutions_focus": 0.8,
+      "policy_relevance": 0.8,
+      "ethical_normative_reasoning": 0.6,
+      "argumentative_reasoning": 0.7
+    }
+  },
+  {
+    "id": "q47",
+    "text": "I would enjoy turning complex datasets into visualizations, dashboards, or interactive tools.",
+    "feature_weights": {
+      "statistical_reasoning": 0.7,
+      "computational_intensity": 0.7,
+      "creative_design": 0.6,
+      "applied_problem_solving": 0.5
+    }
+  },
+  {
+    "id": "q48",
+    "text": "I like the idea of spending a lot of time in a wet lab with biological samples, protocols, and instruments.",
+    "feature_weights": {
+      "experimental_lab_work": 1.0,
+      "biological_focus": 0.9
+    }
+  },
+  {
+    "id": "q49",
+    "text": "I’m excited by topics like geology, oceans, climate, or planetary science.",
+    "feature_weights": {
+      "physical_science_focus": 1.0,
+      "empirical_fieldwork": 0.7,
+      "experimental_lab_work": 0.5
+    }
+  },
+  {
+    "id": "q50",
+    "text": "I like the idea of a major with strong studio, rehearsal, or performance components.",
+    "feature_weights": {
+      "creative_design": 0.9,
+      "human_behavior_focus": 0.5,
+      "ambiguity_tolerance": 0.6,
+      "reading_intensity": 0.3
+    }
+  },
+  {
+    "id": "q51",
+    "text": "I enjoy managing complex projects with constraints, timelines, and multiple stakeholders.",
+    "feature_weights": {
+      "systems_thinking": 0.8,
+      "applied_problem_solving": 0.8,
+      "human_behavior_focus": 0.5,
+      "social_institutions_focus": 0.4
+    }
+  },
+  {
+    "id": "q52",
+    "text": "I’m drawn to questions about identity, race, gender, or culture and their social impact.",
+    "feature_weights": {
+      "human_behavior_focus": 0.7,
+      "social_institutions_focus": 0.9,
+      "policy_relevance": 0.6,
+      "historical_contextual_analysis": 0.6,
+      "ambiguity_tolerance": 0.5
+    }
+  },
+  {
+    "id": "q53",
+    "text": "I would enjoy building computational or mathematical models of physical or biological processes.",
+    "feature_weights": {
+      "computational_intensity": 0.8,
+      "mathematical_rigor": 0.7,
+      "modeling_abstraction": 1.0,
+      "physical_science_focus": 0.5,
+      "biological_focus": 0.4
+    }
+  },
+  {
+    "id": "q54",
+    "text": "I’d like to read and debate theoretical or philosophical texts about knowledge, ethics, or society.",
+    "feature_weights": {
+      "ethical_normative_reasoning": 1.0,
+      "argumentative_reasoning": 1.0,
+      "reading_intensity": 0.9,
+      "ambiguity_tolerance": 0.8
+    }
+  },
+  {
+    "id": "q55",
+    "text": "I care deeply about animal welfare or working with animals in research or clinical settings.",
+    "feature_weights": {
+      "biological_focus": 0.8,
+      "experimental_lab_work": 0.6,
+      "ethical_normative_reasoning": 0.6,
+      "empirical_fieldwork": 0.4
+    }
+  },
+  {
+    "id": "q56",
+    "text": "I’d like to work with sound, audio technology, or music production tools as part of my major.",
+    "feature_weights": {
+      "computational_intensity": 0.5,
+      "creative_design": 0.8,
+      "applied_problem_solving": 0.5,
+      "human_behavior_focus": 0.3
+    }
+  },
+  {
+    "id": "q57",
+    "text": "I would rather have one clear “home” discipline and take a few classes outside it, than be split evenly across several fields.",
+    "feature_weights": {
+      "interdisciplinarity": -0.8,
+      "mathematical_rigor": 0.4,
+      "reading_intensity": 0.4
+    }
+  },
+  {
+    "id": "q58",
+    "text": "I’m excited by majors that intentionally combine very different ways of thinking (for example, mixing computer science, psychology, and philosophy).",
+    "feature_weights": {
+      "interdisciplinarity": 1.0,
+      "human_behavior_focus": 0.5,
+      "computational_intensity": 0.4,
+      "ethical_normative_reasoning": 0.4
+    }
+  },
+  {
+    "id": "q59",
+    "text": "I would prefer a major that is roughly half technical/quantitative and half conceptual/interpretive.",
+    "feature_weights": {
+      "interdisciplinarity": 0.9,
+      "mathematical_rigor": 0.5,
+      "statistical_reasoning": 0.4,
+      "reading_intensity": 0.5,
+      "writing_intensity": 0.5
+    }
+  },
+  {
+    "id": "q60",
+    "text": "I’m happy to keep philosophy or the humanities as a side interest, but I want my main major to be firmly technical.",
+    "feature_weights": {
+      "mathematical_rigor": 0.8,
+      "computational_intensity": 0.8,
+      "interdisciplinarity": -0.6,
+      "reading_intensity": -0.4,
+      "ethical_normative_reasoning": -0.3
+    }
+  },
+  {
+    "id": "q61",
+    "text": "I prefer expressing myself through writing and analysis more than through physical performance or visual media.",
+    "feature_weights": {
+      "writing_intensity": 1.0,
+      "reading_intensity": 0.8,
+      "creative_design": -0.6
+    }
+  },
+  {
+    "id": "q62",
+    "text": "I enjoy performing on stage for an audience.",
+    "feature_weights": {
+      "creative_design": 1.0,
+      "human_behavior_focus": 0.5,
+      "reading_intensity": -0.4,
+      "writing_intensity": -0.4
+    }
+  },
+  {
+    "id": "q63",
+    "text": "I would enjoy writing a long thesis or capstone project based on close reading and original analysis.",
+    "feature_weights": {
+      "writing_intensity": 1.0,
+      "reading_intensity": 0.9,
+      "historical_contextual_analysis": 0.7,
+      "creative_design": -0.4
+    }
+  },
+  {
+    "id": "q64",
+    "text": "I like the idea of working with archival materials, historical documents, or literary texts.",
+    "feature_weights": {
+      "historical_contextual_analysis": 1.0,
+      "reading_intensity": 0.8,
+      "ambiguity_tolerance": 0.6,
+      "creative_design": -0.3
+    }
+  },
+  {
+    "id": "q65",
+    "text": "I would rather take seminar-style courses with heavy reading and discussion than studio or rehearsal courses.",
+    "feature_weights": {
+      "reading_intensity": 0.9,
+      "writing_intensity": 0.7,
+      "creative_design": -0.7
+    }
+  },
+  {
+    "id": "q66",
+    "text": "I like the idea of working on low-level systems, infrastructure, or compilers.",
+    "feature_weights": {
+      "computational_intensity": 1.0,
+      "systems_thinking": 0.8,
+      "human_behavior_focus": -0.4,
+      "social_institutions_focus": -0.3
+    }
+  },
+  {
+    "id": "q67",
+    "text": "I’m fascinated by questions at the intersection of mind, computation, and language.",
+    "feature_weights": {
+      "human_behavior_focus": 0.9,
+      "modeling_abstraction": 0.8,
+      "computational_intensity": 0.6,
+      "ethical_normative_reasoning": 0.4
+    }
+  },
+  {
+    "id": "q68",
+    "text": "I’m more interested in how technology affects society, law, and ethics than in how it works internally.",
+    "feature_weights": {
+      "social_institutions_focus": 0.9,
+      "policy_relevance": 0.8,
+      "ethical_normative_reasoning": 0.6,
+      "computational_intensity": -0.3
+    }
+  },
+  {
+    "id": "q69",
+    "text": "I enjoy building formal models of markets, incentives, or strategic interactions.",
+    "feature_weights": {
+      "mathematical_rigor": 0.8,
+      "statistical_reasoning": 0.7,
+      "social_institutions_focus": 0.8,
+      "policy_relevance": 0.4
+    }
+  },
+  {
+    "id": "q70",
+    "text": "I’d rather design and manage complex organizations or processes than study them purely theoretically.",
+    "feature_weights": {
+      "systems_thinking": 0.8,
+      "applied_problem_solving": 0.9,
+      "social_institutions_focus": 0.6,
+      "mathematical_rigor": 0.3
+    }
+  },
+  {
+    "id": "q71",
+    "text": "I care most about evaluating which policies work using data and careful empirical methods.",
+    "feature_weights": {
+      "statistical_reasoning": 0.9,
+      "policy_relevance": 0.9,
+      "social_institutions_focus": 0.8,
+      "reading_intensity": 0.3
+    }
+  },
+  {
+    "id": "q72",
+    "text": "I prefer theoretical work in probability or statistics to applied questions about specific policies or institutions.",
+    "feature_weights": {
+      "mathematical_rigor": 0.8,
+      "statistical_reasoning": 0.9,
+      "policy_relevance": -0.6,
+      "social_institutions_focus": -0.4
+    }
+  },
+  {
+    "id": "q73",
+    "text": "I would enjoy implementing data structures and algorithms from scratch.",
+    "feature_weights": {
+      "computational_intensity": 1.0,
+      "systems_thinking": 0.7,
+      "mathematical_rigor": 0.5
+    }
+  },
+  {
+    "id": "q74",
+    "text": "I'm excited by asymptotic analysis and proving algorithm complexity bounds.",
+    "feature_weights": {
+      "mathematical_rigor": 1.0,
+      "modeling_abstraction": 0.9,
+      "computational_intensity": 0.6
+    }
+  },
+  {
+    "id": "q75",
+    "text": "I'd like to work on operating systems, distributed systems, or computer architecture.",
+    "feature_weights": {
+      "computational_intensity": 1.0,
+      "systems_thinking": 0.9,
+      "engineering_orientation": 0.7
+    }
+  },
+  {
+    "id": "q76",
+    "text": "I want to study how the brain processes information, learns, or makes decisions.",
+    "feature_weights": {
+      "biological_focus": 0.8,
+      "human_behavior_focus": 0.9,
+      "modeling_abstraction": 0.7,
+      "computational_intensity": 0.5
+    }
+  },
+  {
+    "id": "q77",
+    "text": "I'm fascinated by how children acquire language or how people learn to read.",
+    "feature_weights": {
+      "human_behavior_focus": 1.0,
+      "reading_intensity": 0.6,
+      "modeling_abstraction": 0.5
+    }
+  },
+  {
+    "id": "q78",
+    "text": "I'd enjoy analyzing poetry, novels, or plays for their literary techniques and meanings.",
+    "feature_weights": {
+      "reading_intensity": 1.0,
+      "writing_intensity": 0.8,
+      "ambiguity_tolerance": 0.7,
+      "historical_contextual_analysis": 0.5
+    }
+  },
+  {
+    "id": "q79",
+    "text": "I want to understand how historical events shaped political, social, or economic structures.",
+    "feature_weights": {
+      "historical_contextual_analysis": 1.0,
+      "social_institutions_focus": 0.8,
+      "reading_intensity": 0.7,
+      "writing_intensity": 0.6
+    }
+  },
+  {
+    "id": "q80",
+    "text": "I'd like to work in a wet lab culturing cells, running PCR, or doing microscopy.",
+    "feature_weights": {
+      "experimental_lab_work": 1.0,
+      "biological_focus": 1.0,
+      "computational_intensity": -0.2
+    }
+  },
+  {
+    "id": "q81",
+    "text": "I'm interested in designing medical devices, prosthetics, or biomedical imaging systems.",
+    "feature_weights": {
+      "biological_focus": 0.9,
+      "engineering_orientation": 0.9,
+      "applied_problem_solving": 0.8,
+      "computational_intensity": 0.5
+    }
+  },
+  {
+    "id": "q82",
+    "text": "I'd enjoy studying how social movements, revolutions, or political transitions happen.",
+    "feature_weights": {
+      "social_institutions_focus": 0.9,
+      "historical_contextual_analysis": 0.8,
+      "policy_relevance": 0.7,
+      "human_behavior_focus": 0.6
+    }
+  },
+  {
+    "id": "q83",
+    "text": "I want to optimize supply chains, scheduling algorithms, or resource allocation problems.",
+    "feature_weights": {
+      "systems_thinking": 0.9,
+      "applied_problem_solving": 0.9,
+      "mathematical_rigor": 0.7,
+      "statistical_reasoning": 0.5
+    }
+  },
+  {
+    "id": "q84",
+    "text": "I'm drawn to questions about what makes actions morally right or wrong, independent of consequences.",
+    "feature_weights": {
+      "ethical_normative_reasoning": 1.0,
+      "argumentative_reasoning": 0.8,
+      "reading_intensity": 0.6,
+      "mathematical_rigor": -0.2
+    }
+  },
+  {
+    "id": "q85",
+    "text": "I'd like to study how different cultures express meaning through art, music, or ritual.",
+    "feature_weights": {
+      "historical_contextual_analysis": 0.9,
+      "human_behavior_focus": 0.8,
+      "creative_design": 0.6,
+      "reading_intensity": 0.6,
+      "ambiguity_tolerance": 0.6
+    }
+  },
+  {
+    "id": "q86",
+    "text": "I want to understand how economic policies affect inequality, growth, or employment.",
+    "feature_weights": {
+      "social_institutions_focus": 0.9,
+      "policy_relevance": 0.9,
+      "statistical_reasoning": 0.7,
+      "mathematical_rigor": 0.5
+    }
+  },
+  {
+    "id": "q87",
+    "text": "I'd enjoy building web applications, mobile apps, or user-facing software products.",
+    "feature_weights": {
+      "computational_intensity": 0.9,
+      "applied_problem_solving": 0.8,
+      "creative_design": 0.5,
+      "human_behavior_focus": 0.4
+    }
+  },
+  {
+    "id": "q88",
+    "text": "I'm interested in how machine learning models make predictions and what makes them fair or biased.",
+    "feature_weights": {
+      "computational_intensity": 0.8,
+      "statistical_reasoning": 0.8,
+      "ethical_normative_reasoning": 0.7,
+      "human_behavior_focus": 0.5,
+      "modeling_abstraction": 0.6
+    }
+  },
+  {
+    "id": "q89",
+    "text": "I want to study how climate change affects ecosystems, agriculture, or human communities.",
+    "feature_weights": {
+      "biological_focus": 0.7,
+      "physical_science_focus": 0.7,
+      "policy_relevance": 0.8,
+      "empirical_fieldwork": 0.6,
+      "social_institutions_focus": 0.5
+    }
+  },
+  {
+    "id": "q90",
+    "text": "I'd enjoy translating between languages or analyzing how meaning changes across cultures.",
+    "feature_weights": {
+      "reading_intensity": 0.9,
+      "human_behavior_focus": 0.7,
+      "historical_contextual_analysis": 0.6,
+      "ambiguity_tolerance": 0.6
+    }
+  },
+  {
+    "id": "q91",
+    "text": "I'm excited by the idea of proving mathematical theorems or working with abstract algebra.",
+    "feature_weights": {
+      "mathematical_rigor": 1.0,
+      "modeling_abstraction": 0.9,
+      "argumentative_reasoning": 0.4
+    }
+  },
+  {
+    "id": "q92",
+    "text": "I want to design physical products, furniture, or architectural spaces.",
+    "feature_weights": {
+      "creative_design": 1.0,
+      "engineering_orientation": 0.7,
+      "applied_problem_solving": 0.7,
+      "physical_science_focus": 0.4
+    }
+  }
+]
+
