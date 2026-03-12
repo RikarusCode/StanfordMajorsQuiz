@@ -20,6 +20,12 @@ wheels/
 .installed.cfg
 *.egg
 
+# Frontend (Next.js)
+# The Python template ignore above (`lib/`) is meant for local Python build artifacts,
+# but this repo also has a `frontend/lib/` directory that must be tracked.
+!frontend/lib/
+!frontend/lib/**
+
 # Virtual environments
 .venv/
 venv/
