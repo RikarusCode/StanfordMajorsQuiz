@@ -42,8 +42,10 @@ app.add_middleware(
     CORSMiddleware,
     # Public API (no cookies/auth): allow cross-origin browser requests from anywhere.
     # This avoids "Failed to fetch" due to CORS when using custom domains / previews.
+    # Use a permissive regex as well; some proxies/browsers behave better when
+    # the origin is explicitly matched and echoed back.
     allow_origins=["*"],
-    allow_origin_regex=None,
+    allow_origin_regex=r".*",
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
