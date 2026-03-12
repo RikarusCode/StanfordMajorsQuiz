@@ -3,7 +3,7 @@
  */
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://stanfordmajorsquiz-production.up.railway.app";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export interface Major {
   id: string;
